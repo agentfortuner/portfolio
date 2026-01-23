@@ -2,87 +2,352 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <style>:root { --theme-color: #ff6b6b; }</style> </head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #ff6b6b;
+            --accent-hover: #ff5252;
+            --input-bg: #334155;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Navigation (Kept similar to your logic but styled) --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        /* --- Header Section --- */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--accent-color);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* --- Main Layout --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* --- Left Side: Info --- */
+        .contact-info {
+            background: linear-gradient(145deg, #1e293b, #162030);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            margin-top: auto;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn {
+            background: rgba(255,255,255,0.05);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--accent-color);
+            border-color: rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* --- Right Side: Form --- */
+        .contact-form {
+            padding: 50px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: var(--input-bg);
+            border: 1px solid transparent;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+            background: #253347;
+            box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .contact-info {
+                padding: 40px 30px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .contact-form {
+                padding: 40px 30px;
+            }
+            .nav-links {
+                display: none; /* Add a toggle script for real mobile menu */
+            }
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
 <body>
 
     <nav>
-        <a href="index.html" class="logo">myselfkln.Dev</a>
+        <a href="index.html" class="logo">myselfkln<span style="color:var(--accent-color)">.Dev</span></a>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="multimedia.html">Multimedia</a>
             <a href="datascience.html">Data Science</a>
             <a href="electronics.html">Electronics</a>
-            <a href="space.html">Space and Aviation</a>
+            <a href="space.html">Space</a>
             <a href="contact.html" class="active">Contact</a>
         </div>
     </nav>
 
     <header>
-        <h1>Get In Touch</h1>
         <div class="subtitle">Let's Collaborate</div>
+        <h1>Get In Touch</h1>
     </header>
 
     <div class="container">
         <div class="contact-wrapper">
             
             <div class="contact-info">
-                <h3>Let's build something impossible.</h3>
-                <p style="margin-bottom: 30px; line-height: 1.6;">
-                    I am currently available for freelance work and full-time positions. 
-                    Whether you have a question about a project or just want to discuss 
-                    the latest in Tech, drop me a message.
-                </p>
+                <div>
+                    <h3>Let's build something impossible.</h3>
+                    <p>
+                        I am currently available for freelance work and full-time positions. 
+                        Whether you have a question about a project or just want to discuss 
+                        the latest in Tech, drop me a message.
+                    </p>
 
-                <div class="info-item">
-                    <span>&#9993;</span> <a href="mailto:keshavakrishnan12@gmail.com" style="color:inherit; text-decoration:none;">keshavakrishnan12@gmail.com</a>
+                    <div class="info-item">
+                        <div class="icon-box">&#9993;</div>
+                        <a href="mailto:keshavakrishnan12@gmail.com" style="color:inherit; text-decoration:none;">keshavakrishnan12@gmail.com</a>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="icon-box">&#128241;</div>
+                        <span>+91 7997762141</span>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon-box">&#127758;</div>
+                        <span>Hyderabad, India (Open to Remote)</span>
+                    </div>
                 </div>
-                
-                <div class="info-item">
-                    <span>&#128241;</span> +91 7997762141
+
+                <div class="social-links">
+                    <a href="https://github.com/agentfortuner" target="_blank" class="social-btn">
+                        <span>&#128187;</span> GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/kln12" target="_blank" class="social-btn">
+                        <span>&#128188;</span> LinkedIn
+                    </a>
+                    <a href="https://twitter.com/myselfkln" target="_blank" class="social-btn">
+                        <span>&#128038;</span> Twitter
+                    </a>
                 </div>
-
-                <div class="info-item">
-                    <span>&#127758;</span> Hyderabad, India (Open to Remote)
-                </div>
-
-               <div class="info-item" style="margin-top: 30px; gap: 15px;">
-    
-    <a href="https://github.com/agentfortuner" target="_blank" class="tag" style="text-decoration: none; display: flex; align-items: center; gap: 5px;">
-        <span style="font-size: 1.2rem;">&#128187;</span> GitHub
-    </a>
-
-    <a href="https://linkedin.com/in/kln12" target="_blank" class="tag" style="text-decoration: none; display: flex; align-items: center; gap: 5px;">
-        <span style="font-size: 1.2rem;">&#128188;</span> LinkedIn
-    </a>
-
-    <a href="https://twitter.com/myselfkln" target="_blank" class="tag" style="text-decoration: none; display: flex; align-items: center; gap: 5px;">
-        <span style="font-size: 1.2rem;">&#128038;</span> Twitter
-    </a>
-
-</div>
             </div>
 
             <div class="contact-form">
                 <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Your Name</label>
                         <input type="text" id="name" name="name" placeholder="John Doe" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email Address</label>
                         <input type="email" id="email" name="email" placeholder="john@example.com" required>
                     </div>
 
                     <div class="form-group">
                         <label for="domain">Interested Domain</label>
-                        <input type="text" id="domain" name="domain" placeholder="e.g. Data Science, VFX, etc.">
+                        <input type="text" id="domain" name="domain" placeholder="e.g. Data Science, Web Dev">
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Message</label>
+                        <label for="message">Your Message</label>
                         <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
                     </div>
 
@@ -93,6 +358,7 @@
         </div>
     </div>
 
-    <footer>&copy; 2026 myselfkln</footer>
+    <footer>&copy; 2026 myselfkln.Dev</footer>
+
 </body>
 </html>
