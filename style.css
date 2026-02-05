@@ -1,19 +1,19 @@
+/* style.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* --- Base Theme (Slate Dark Mode) --- */
+    /* Base Colors (Slate Theme) */
     --bg-color: #0f172a;
     --card-bg: #1e293b;
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
     --border-color: rgba(255, 255, 255, 0.05);
     
-    /* --- YOUR REQUESTED COLOR ORDER --- */
-    --color-multi: #8b5cf6; /* Violet (Multimedia) */
-    --color-data:  #3b82f6; /* Blue   (Data Science) */
-    --color-elec:  #22c55e; /* Green  (Electronics) */
-    --color-space: #eab308; /* Yellow (Space) */
-    --color-cont:  #ef4444; /* Red    (Contact) */
+    /* Domain Specific Colors */
+    --color-multi: #d600ff;
+    --color-data: #00f2ff;
+    --color-elec: #ffcc00;
+    --color-space: #3b82f6;
     
     /* Default Accent (Overridden by specific pages) */
     --accent-color: #ffffff;
@@ -189,12 +189,6 @@ h1 {
 }
 
 /* --- PORTAL GRID (Index Page) --- */
-/* This maps the specific colors for the home page cards */
-.theme-multi { --accent-color: var(--color-multi); } /* Violet */
-.theme-data  { --accent-color: var(--color-data); }  /* Blue */
-.theme-elec  { --accent-color: var(--color-elec); }  /* Green */
-.theme-space { --accent-color: var(--color-space); } /* Yellow */
-
 .portal-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -218,9 +212,15 @@ h1 {
     font-weight: 400;
 }
 
+/* Specific Themes for Portal Cards */
+.theme-multi { --accent-color: var(--color-multi); }
+.theme-data { --accent-color: var(--color-data); }
+.theme-elec { --accent-color: var(--color-elec); }
+.theme-space { --accent-color: var(--color-space); }
+
 .portal-card h3 { font-size: 1.8rem; margin: 0; }
 
-/* --- CONTACT SECTION LAYOUT --- */
+/* --- CONTACT SECTION --- */
 .contact-wrapper {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -241,15 +241,6 @@ h1 {
     color: var(--accent-color);
 }
 
-.form-group { margin-bottom: 20px; }
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
 .form-group input, .form-group textarea {
     width: 100%;
     padding: 15px;
@@ -257,6 +248,7 @@ h1 {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     color: #fff;
+    margin-bottom: 20px;
     font-family: inherit;
 }
 .form-group input:focus, .form-group textarea:focus {
@@ -268,7 +260,7 @@ h1 {
     width: 100%;
     padding: 15px;
     background: var(--accent-color);
-    color: #fff; 
+    color: #fff; /* Or black if accent is bright */
     border: none;
     border-radius: 8px;
     font-weight: 600;
@@ -288,14 +280,4 @@ footer {
 }
 
 /* --- ANIMATION --- */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 768px) {
-    header h1 { font-size: 2.5rem; }
-    .contact-wrapper { grid-template-columns: 1fr; }
-    .nav-links { display: none; } 
-}
-
+@keyframes fadeIn
